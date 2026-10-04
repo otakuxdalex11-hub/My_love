@@ -1,0 +1,573 @@
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Una carta para ti 💙</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family:"Comic Neue", cursive;
+
+        }
+
+        body {
+            min-height: 100vh;
+            background: #020817;
+            color: white;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            overflow: hidden;
+        }
+
+        /* CONTENEDOR */
+
+        .contenedor {
+            text-align: center;
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        /* TITULO */
+
+        .titulo h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .titulo p {
+            color: #9fc5ff;
+            margin-bottom: 50px;
+        }
+
+        /* ESCENA */
+
+        .escena {
+            position: relative;
+
+            width: 500px;
+            height: 330px;
+
+            margin: auto;
+
+            perspective: 1000px;
+        }
+
+        /* CARTA */
+
+        .carta {
+
+            position: absolute;
+
+            width: 440px;
+            height: 280px;
+
+            background: white;
+            color: #111827;
+
+            left: 30px;
+            top: 25px;
+
+            padding: 35px;
+
+            border-radius: 8px;
+
+            text-align: left;
+
+            z-index: 1;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+
+            transform: translateY(0);
+
+            transition:
+                transform 1s ease,
+                z-index 0s 0.5s;
+        }
+
+        .carta h2 {
+            text-align: center;
+            color: #17375e;
+            margin-bottom: 20px;
+        }
+
+        .carta p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .firma {
+            text-align: right;
+            color: #17375e;
+            font-weight: bold;
+        }
+
+        /* SOBRE */
+
+        .sobre {
+
+            position: absolute;
+
+            width: 500px;
+            height: 300px;
+
+            bottom: 0;
+            left: 0;
+
+            background: #0b1d35;
+
+            border: 2px solid #4e8fe8;
+
+            border-radius: 12px;
+
+            z-index: 3;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.5);
+
+            overflow: visible;
+        }
+
+        /* PARTE FRONTAL DEL SOBRE */
+
+        .sobre::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 0;
+            height: 0;
+
+            border-left: 248px solid transparent;
+            border-right: 248px solid transparent;
+
+            border-bottom: 150px solid #102a4a;
+
+            z-index: 4;
+
+            pointer-events: none;
+        }
+
+        /* SOLAPA */
+
+        .solapa {
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 0;
+            height: 0;
+
+            border-left: 248px solid transparent;
+            border-right: 248px solid transparent;
+
+            border-top: 160px solid #173b66;
+
+            transform-origin: top center;
+
+            transition: transform 1s ease;
+
+            z-index: 5;
+        }
+
+        /* CORAZÓN */
+
+        .corazon-centro {
+
+            position: absolute;
+
+            left: 50%;
+            top: 42%;
+
+            transform: translate(-50%, -50%);
+
+            font-size: 55px;
+
+            z-index: 6;
+
+            transition: 0.5s;
+
+        }
+
+        /* TEXTO DEL SOBRE */
+
+        .texto-sobre {
+
+            position: absolute;
+
+            bottom: 35px;
+
+            left: 0;
+
+            width: 100%;
+
+            z-index: 7;
+
+            color: white;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+        }
+
+        /* CUANDO SE ABRE */
+
+        .escena.abierto .solapa {
+
+            transform: rotateX(180deg);
+
+            z-index: 0;
+        }
+
+        .escena.abierto .carta {
+
+            transform: translateY(-230px);
+
+            z-index: 10;
+        }
+
+        .escena.abierto .corazon-centro {
+
+            opacity: 0;
+
+            transform:
+                translate(-50%, -50%)
+                scale(0);
+        }
+
+        .escena.abierto .texto-sobre {
+
+            opacity: 0;
+        }
+
+        /* BOTÓN */
+
+        .boton-regresar {
+
+            display: inline-block;
+
+            margin-top: 50px;
+
+            padding: 12px 25px;
+
+            border: 1px solid #6ea8ff;
+
+            border-radius: 25px;
+
+            color: white;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+        .boton-regresar:hover {
+
+            background: #6ea8ff;
+
+            color: #020817;
+        }
+
+        /* CORAZONES FLOTANTES */
+
+        .corazon {
+
+            position: fixed;
+
+            bottom: -30px;
+
+            color: #6ea8ff;
+
+            font-size: 20px;
+
+            animation: subir 6s linear forwards;
+
+            pointer-events: none;
+
+        }
+
+        @keyframes subir {
+
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            100% {
+                transform:
+                    translateY(-110vh)
+                    rotate(360deg);
+
+                opacity: 0;
+            }
+        }
+
+        /* ANIMACIÓN INICIAL */
+
+        @keyframes aparecer {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contenedor {
+            animation: aparecer 1s ease;
+        }
+
+        /* CELULAR */
+
+        @media (max-width: 600px) {
+
+            .titulo h1 {
+                font-size: 30px;
+            }
+
+            .escena {
+
+                width: 330px;
+                height: 250px;
+
+            }
+
+            .sobre {
+
+                width: 330px;
+                height: 210px;
+
+            }
+
+            .sobre::after {
+
+                border-left-width: 163px;
+                border-right-width: 163px;
+                border-bottom-width: 105px;
+
+            }
+
+            .solapa {
+
+                border-left-width: 163px;
+                border-right-width: 163px;
+                border-top-width: 110px;
+
+            }
+
+            .carta {
+
+                width: 300px;
+                height: 250px;
+
+                left: 15px;
+                top: 10px;
+
+                padding: 20px;
+
+            }
+
+            .carta h2 {
+                font-size: 20px;
+            }
+
+            .carta p {
+                font-size: 12px;
+                line-height: 1.4;
+            }
+
+            .escena.abierto .carta {
+
+                transform: translateY(-170px);
+
+            }
+
+            .corazon-centro {
+                font-size: 40px;
+            }
+
+            .texto-sobre {
+                font-size: 14px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="contenedor">
+
+
+        <div class="titulo">
+
+           <link rel="preconnect" href="https://fonts.googleapis.com">
+           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+           <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+
+            <h1>
+                💌 ZAZ te sorprendi lo se jejeje😜jikijii
+            </h1>
+
+            <p>
+                Haz clic en el sobre para abrirla
+            </p>
+
+        </div>
+
+
+        <!-- ESCENA -->
+
+        <div class="escena" id="escena">
+
+
+            <!-- CARTA QUE SALE DEL SOBRE -->
+
+            <div class="carta">
+
+                <h2>
+                    ❤️Para el niño más bello❤️
+                </h2>
+
+                <p>
+                   Gracias amor por estar conmigo gracias por ser el mejor novio para mi, yo a tu lado me siento muy feliz,contigo soy la mujer más feliz ✨.Si alguna vez te llegas a sentirte triste yo estare para ti, no dudes en decirme, aqui estare yo❤️. Tú mio y yo tuya por siempre si no Jmmmm,te arrastro, BECHITOOO😚
+                    
+                </p>
+
+               
+                <p class="firma">
+                    Te amooo hasta el más allá🌠
+                </p>
+
+            </div>
+
+
+            <!-- SOBRE -->
+
+            <div class="sobre"
+                 onclick="abrirCarta()">
+
+
+                <!-- SOLAPA -->
+
+                <div class="solapa"></div>
+
+
+                <!-- CORAZÓN -->
+
+                <div class="corazon-centro">
+                    💙
+                </div>
+
+
+                <!-- TEXTO -->
+
+                <div class="texto-sobre">
+
+                    Haz clic aquí para abrirla
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- REGRESAR -->
+
+        <a href="index.html"
+           class="boton-regresar">
+
+            ← Volver al inicio
+
+        </a>
+
+
+    </div>
+
+
+    <script>
+
+        /* ABRIR CARTA */
+
+        function abrirCarta() {
+
+            const escena =
+                document.getElementById("escena");
+
+            escena.classList.toggle("abierto");
+
+        }
+
+
+        /* CORAZONES */
+
+        function crearCorazon() {
+
+            const corazon =
+                document.createElement("div");
+
+            corazon.className = "corazon";
+
+            corazon.innerHTML = "♥";
+
+            corazon.style.left =
+                Math.random() * 100 + "vw";
+
+            corazon.style.fontSize =
+                Math.random() * 20 + 12 + "px";
+
+            corazon.style.animationDuration =
+                Math.random() * 3 + 4 + "s";
+
+            document.body.appendChild(corazon);
+
+            setTimeout(() => {
+
+                corazon.remove();
+
+            }, 7000);
+
+        }
+
+        setInterval(crearCorazon, 700);
+
+    </script>
+
+
+</body>
+
+</html>

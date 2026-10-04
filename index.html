@@ -1,0 +1,628 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Feliz Día del Novio 💙</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #020817;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           PORTADA
+        ========================= */
+
+        .portada {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+
+            background:
+                radial-gradient(circle at top, #16345c, #020817 65%);
+        }
+
+        .contenido-portada {
+            max-width: 800px;
+            animation: aparecer 2s ease;
+        }
+
+        .contenido-portada span {
+            color: #6ea8ff;
+            font-size: 22px;
+            letter-spacing: 4px;
+        }
+
+        .contenido-portada h1 {
+            font-size: clamp(45px, 8vw, 90px);
+            margin: 20px 0;
+            color: white;
+        }
+
+        .contenido-portada h1 strong {
+            color: #6ea8ff;
+        }
+
+        .contenido-portada p {
+            color: #d8e4f5;
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        .boton {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+
+            background: #ffffff;
+            color: #020817;
+
+            border: none;
+            border-radius: 30px;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+        .boton:hover {
+            background: #6ea8ff;
+            color: white;
+            transform: scale(1.05);
+        }
+
+
+        /* =========================
+           SECCIONES
+        ========================= */
+
+        section {
+            padding: 90px 8%;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .titulo h2 {
+            font-size: 38px;
+            color: white;
+        }
+
+        .titulo p {
+            margin-top: 10px;
+            color: #9fb3cc;
+        }
+
+
+        /* =========================
+           CARTA
+        ========================= */
+
+        .carta-contenedor {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .sobre {
+            background: #071426;
+            border: 1px solid #1c3555;
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            cursor: pointer;
+
+            transition: 0.4s;
+
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .sobre:hover {
+            transform: translateY(-5px);
+            border-color: #6ea8ff;
+        }
+
+        .sobre .icono {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .sobre h3 {
+            color: #6ea8ff;
+            margin-bottom: 10px;
+        }
+
+        .carta {
+            display: none;
+
+            margin-top: 20px;
+            padding: 35px;
+
+            background: white;
+            color: #111827;
+
+            border-radius: 20px;
+
+            line-height: 1.8;
+
+            animation: aparecer 0.8s ease;
+        }
+
+        .carta.visible {
+            display: block;
+        }
+
+        .carta h3 {
+            color: #17375e;
+            margin-bottom: 20px;
+        }
+
+/* =========================
+   REPRODUCTOR DE MÚSICA
+========================= */
+
+.seccion-musica {
+    text-align: center;
+}
+
+.reproductor {
+
+    max-width: 700px;
+
+    margin: auto;
+
+    padding: 40px;
+
+    background: #071426;
+
+    border: 1px solid #24476e;
+
+    border-radius: 25px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 50px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.4);
+}
+
+
+/* DISCO */
+
+.disco {
+
+    width: 190px;
+    height: 190px;
+
+    min-width: 190px;
+
+    border-radius: 50%;
+
+    background:
+        repeating-radial-gradient(
+            circle,
+            #050505 0px,
+            #050505 3px,
+            #151515 4px,
+            #050505 6px
+        );
+
+    border: 5px solid #111;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.6);
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+}
+
+
+/* CENTRO DEL DISCO */
+
+.centro-disco {
+
+    width: 65px;
+    height: 65px;
+
+    border-radius: 50%;
+
+    background: #17375e;
+
+    border: 4px solid #6ea8ff;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 25px;
+
+    box-shadow:
+        0 0 15px rgba(110,168,255,0.4);
+}
+
+
+/* GIRO DEL DISCO */
+
+.disco.girando {
+
+    animation:
+        girar 3s linear infinite;
+}
+
+
+@keyframes girar {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* INFORMACIÓN */
+
+.info-musica {
+
+    text-align: left;
+}
+
+.info-musica h3 {
+
+    color: #6ea8ff;
+
+    font-size: 25px;
+
+    margin-bottom: 10px;
+}
+
+.info-musica p {
+
+    color: #aebed1;
+
+    margin-bottom: 20px;
+}
+
+
+/* AUDIO */
+
+.info-musica audio {
+
+    width: 280px;
+}
+
+
+/* CELULAR */
+
+@media (max-width: 650px) {
+
+    .reproductor {
+
+        flex-direction: column;
+
+        gap: 30px;
+
+        padding: 30px 20px;
+
+    }
+
+    .info-musica {
+
+        text-align: center;
+    }
+
+    .info-musica audio {
+
+        width: 100%;
+    }
+
+}
+            
+ 
+
+        /* =========================
+           SORPRESA
+        ========================= */
+
+        .sorpresa {
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #071426,
+                    #0b1e38
+                );
+
+            border-top: 1px solid #1c3555;
+            border-bottom: 1px solid #1c3555;
+        }
+
+        .mensaje-sorpresa {
+            display: none;
+
+            margin: 30px auto 0;
+
+            max-width: 650px;
+
+            font-size: 25px;
+            line-height: 1.6;
+
+            color: #ffffff;
+
+            animation: aparecer 1s ease;
+        }
+
+        .mensaje-sorpresa.visible {
+            display: block;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 30px;
+
+            text-align: center;
+
+            background: #01040a;
+
+            color: #8495aa;
+        }
+
+        footer strong {
+            color: #6ea8ff;
+        }
+
+
+        /* =========================
+           CORAZONES
+        ========================= */
+
+        .corazon {
+            position: fixed;
+
+            bottom: -30px;
+
+            color: #6ea8ff;
+
+            font-size: 20px;
+
+            pointer-events: none;
+
+            animation: subir 6s linear forwards;
+
+            z-index: 1000;
+        }
+
+
+        /* =========================
+           ANIMACIONES
+        ========================= */
+
+        @keyframes subir {
+
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            100% {
+                transform:
+                    translateY(-110vh)
+                    rotate(360deg);
+
+                opacity: 0;
+            }
+        }
+
+        @keyframes aparecer {
+
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =========================
+           CELULAR
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            section {
+                padding: 70px 20px;
+            }
+
+            .contenido-portada h1 {
+                font-size: 48px;
+            }
+
+            .contenido-portada p {
+                font-size: 17px;
+            }
+
+            .titulo h2 {
+                font-size: 30px;
+            }
+
+            .foto {
+                height: 300px;
+            }
+
+            .foto img {
+                height: 240px;
+            }
+
+            .tiempo {
+                width: 100px;
+            }
+
+            .tiempo strong {
+                font-size: 28px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <header class="portada">
+
+        <div class="contenido-portada">
+
+            <span>PARA UN TILIN MUY ESPECIAL jsjsj</span>
+
+            <h1>
+                Feliz Día del
+                <strong>Novio</strong> 💙
+            </h1>
+
+            <p>
+               DE PARTE DE TU TILINA slksljijiiji
+            </p>
+
+            <a href="carta.html" class="boton">
+                💌 Ver sorpresa
+            </a>
+
+        </div>
+
+    </header>
+
+  
+
+<section class="seccion-musica">
+
+    <div class="titulo">
+
+        <h2>🎵 Play the song 🎵 </h2>
+
+        <p>
+            💙TE AMOOOOOOOOOOOOOOOOOOO💙
+        </p>
+
+    </div>
+
+
+    <div class="reproductor">
+
+        <!-- DISCO -->
+
+        <div class="disco" id="disco">
+
+            <div class="centro-disco">
+                💙
+            </div>
+
+        </div>
+
+
+        <!-- INFORMACIÓN -->
+
+        <div class="info-musica">
+
+            <h3>Arctic Monkeys</h3>
+
+            <p>
+                 Baby I'm Yours 🎧 BECHITOOOOO😘
+            </p>
+
+            <audio id="musica" controls>
+
+                <source
+                    src="C:\Users\Usuario\Documents\DIA_NOVIO\musica.mp3"
+                    type="audio/mpeg">
+
+                Tu navegador no soporta audio.
+
+            </audio>
+
+        </div>
+
+    </div>
+</section>
+
+<script>
+const musica = document.getElementById("musica");
+const disco = document.getElementById("disco");
+
+
+musica.addEventListener("play", function() {
+
+    disco.classList.add("girando");
+
+});
+
+
+musica.addEventListener("pause", function() {
+
+    disco.classList.remove("girando");
+
+});
+
+
+musica.addEventListener("ended", function() {
+
+    disco.classList.remove("girando");
+
+});
+</script>
+
+</body>
+</html>
